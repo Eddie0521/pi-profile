@@ -1,6 +1,6 @@
 {
   "name": "pi-profile",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Pi profiles — default coding assistant + deep researcher mode. Switch with `--profile`.",
   "keywords": [
     "pi-package",
