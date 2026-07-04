@@ -19,9 +19,11 @@
 
 ## Why profiles?
 
-The way you want an agent to behave in a code review isn't the way you want it to behave while you're debugging a production incident, and neither one is how you want it to behave while you're surveying a new research area. A single Pi session shouldn't be all of those things at once.
+Picture two agents side by side. On the left, a sober backend engineer: dry, precise, won't touch a line of code without a test, signs commits with `Reviewed-by`, blocks its own `rm -rf`. On the right, a sprightly social media manager: emoji in every reply, hooks in every sentence, writes tweets like it owes the algorithm rent.
 
-Profiles solve this by bundling the system prompt, model binding, skills, and tool permissions into one switchable persona. Define it once, then flip between modes as your task shifts. A read-only reviewer for security audits, a writing mode with the network cut off, a planner+executor dev team: each is one JSON file.
+Same underlying model. Wildly different jobs.
+
+A Pi session shouldn't try to be both at once. Profiles bundle the system prompt, model binding, skills, and tool permissions into one switchable persona. Define the engineer once, define the manager once, flip between them as your task shifts. A read-only reviewer for security audits, a writing mode with the network cut off, a planner+executor dev team: each is one JSON file.
 
 This package ships two profiles to start with (a general-purpose coding assistant and a research mode) so the install has something to show for itself. The real win is making your own.
 
