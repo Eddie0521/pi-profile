@@ -29,6 +29,7 @@
     "extensions/",
     "profiles/",
     "README.md",
+    "README_CN.md",
     "LICENSE"
   ],
   "engines": {
