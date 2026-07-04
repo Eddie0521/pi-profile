@@ -1,0 +1,37 @@
+{
+  "name": "pi-profile",
+  "version": "1.0.0",
+  "description": "Pi profiles — default coding assistant + deep researcher mode. Switch with `--profile`.",
+  "keywords": [
+    "pi-package",
+    "pi-profiles",
+    "pi",
+    "coding-agent",
+    "profile"
+  ],
+  "homepage": "https://github.com/acumen7/pi-profile#readme",
+  "bugs": {
+    "url": "https://github.com/acumen7/pi-profile/issues"
+  },
+  "license": "MIT",
+  "author": "acumen7",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acumen7/pi-profile.git"
+  },
+  "pi": {
+    "extensions": [
+      "./extensions/index.ts"
+    ],
+    "image": "https://pi.dev/packages/pi-profile/screenshot.png"
+  },
+  "files": [
+    "extensions/",
+    "profiles/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "default",
+  "label": "⚡ Default",
+  "description": "通用编程助手模式",
+  "model": {
+    "provider": "opencode-go",
+    "model": "deepseek-v4-flash"
+  }
+}
