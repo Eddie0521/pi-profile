@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <em>Ready-to-use Pi profiles — switch between coding and research personas with a single command.</em>
+  <em>Ready-to-use Pi profiles — switch to any role with a single command.</em>
 </p>
 
 ---
