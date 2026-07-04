@@ -58,31 +58,53 @@ pi install npm:pi-profile
 
 ## 🎮 使用
 
-### 从命令行启动指定配置
+### CLI：启动时指定配置
 
 ```bash
 pi --profile researcher
 pi --profile default
 ```
 
-### 在会话中切换配置
+### ⌨️ Profile 命令（在 Pi 内使用）
+
+安装后，Pi 中可直接使用以下斜杠命令：
+
+| 命令 | 说明 |
+|------|------|
+| `/profile` | 查看当前配置 + 列出所有可用配置 |
+| `/profile <name>` | 切换到指定配置（如 `/profile researcher`） |
+| `/profile list` | 列出所有可用配置 |
+| `/profile show <name>` | 查看指定配置的完整 JSON 内容 |
+| `/profile create` | 创建新配置（交互式菜单） |
+| `/profile create ai` | AI 引导创建 — 描述你的需求，我帮你生成 |
+| `/profile create manual` | 分步骤向导，逐字段设置 |
+| `/profile rm <name>` | 删除一个配置 |
+
+**示例：**
 
 ```
-/profile researcher
-/profile default
+/profile                          # 查看当前配置 + 列表
+/profile researcher               # 切换到 researcher
+/profile list                     # 列出所有配置
+/profile show researcher          # 查看完整 JSON
+/profile create                   # 启动创建向导
+/profile create ai                # "我要一个 Rust 代码审查配置"
+/profile create manual            # 一步步填写
+/profile rm reviewer              # 删除一个配置
 ```
 
-### 查看已安装的配置
+### 手动创建配置
+
+配置就是普通的 JSON 文件，你也可以直接编辑：
 
 ```bash
+# 查看已安装的配置
 ls ~/.pi/profiles/
-```
 
-### 创建自己的配置
+# 查看配置的 JSON 内容
+cat ~/.pi/profiles/researcher.json
 
-配置文件就是普通的 JSON 文件。创建一个新的：
-
-```bash
+# 手动创建新配置
 cat > ~/.pi/profiles/reviewer.json << 'EOF'
 {
   "name": "reviewer",

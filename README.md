@@ -58,31 +58,53 @@ Once installed, Pi loads the package's extension which automatically deploys the
 
 ## 🎮 Usage
 
-### Start with a profile from the command line
+### CLI: start with a profile
 
 ```bash
 pi --profile researcher
 pi --profile default
 ```
 
-### Switch profiles during a session
+### ⌨️ Profile commands (inside Pi)
+
+Once installed, these slash commands are available inside Pi:
+
+| Command | Description |
+|---------|-------------|
+| `/profile` | Show current profile + list all available |
+| `/profile <name>` | Switch to a profile (e.g. `/profile researcher`) |
+| `/profile list` | List all available profiles |
+| `/profile show <name>` | Display a profile's full JSON configuration |
+| `/profile create` | Create a new profile (interactive menu) |
+| `/profile create ai` | AI-guided — describe your intent, I'll generate it |
+| `/profile create manual` | Step-by-step wizard covering all options |
+| `/profile rm <name>` | Delete a profile |
+
+**Examples:**
 
 ```
-/profile researcher
-/profile default
+/profile                          # see current profile + list
+/profile researcher               # switch to researcher
+/profile list                     # list all profiles
+/profile show researcher          # view full JSON config
+/profile create                   # start the creation wizard
+/profile create ai                # "I want a Rust code review profile"
+/profile create manual            # walk through each field one by one
+/profile rm reviewer              # delete a profile
 ```
 
-### List available profiles
+### Create profiles manually
+
+Profiles are just JSON files — you can also edit them directly:
 
 ```bash
+# List installed profiles
 ls ~/.pi/profiles/
-```
 
-### Create your own profiles
+# View a profile's JSON
+cat ~/.pi/profiles/researcher.json
 
-Profiles are just JSON files. Create a new one:
-
-```bash
+# Create a new profile from scratch
 cat > ~/.pi/profiles/reviewer.json << 'EOF'
 {
   "name": "reviewer",
@@ -95,8 +117,6 @@ cat > ~/.pi/profiles/reviewer.json << 'EOF'
 }
 EOF
 ```
-
-See the [profile schema](https://github.com/acumen7/pi-profile) for all available options.
 
 ## 📋 Profile schema
 
