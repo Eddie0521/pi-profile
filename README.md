@@ -12,18 +12,18 @@
 </p>
 
 <p align="center">
-  <em>Ready-to-use Pi profiles — switch to any role with a single command.</em>
+  <em>Ready-to-use Pi profiles. One command, any role.</em>
 </p>
 
 ---
 
-## Why different profiles?
+## Why profiles?
 
-You wouldn't bring the same mindset to every task. Debugging a production outage needs sharp focus and full tool access. Reviewing a pull request calls for restraint — read-only, no accidental writes. Surveying the latest papers demands web search, source citation, and structured note-taking, not a code editor.
+The way you want an agent to behave in a code review isn't the way you want it to behave while you're debugging a production incident, and neither one is how you want it to behave while you're surveying a new research area. A single Pi session shouldn't be all of those things at once.
 
-Pi profiles solve this by bundling system prompt, model binding, skills, and tool configuration into a single switchable persona. Instead of manually tweaking settings each time you context-switch, you define a profile once and flip between them with a single command.
+Profiles solve this by bundling the system prompt, model binding, skills, and tool permissions into one switchable persona. Define it once, then flip between modes as your task shifts. A read-only reviewer for security audits, a writing mode with the network cut off, a planner+executor dev team: each is one JSON file.
 
-This package ships two ready-to-use profiles to get you started — a general-purpose coding assistant and a rigorous research mode. But the real power is that you can create your own: a read-only reviewer for security audits, a writing mode with no internet access, a full dev team with planner + executor sub-agents. Whatever your workflow demands.
+This package ships two profiles to start with (a general-purpose coding assistant and a research mode) so the install has something to show for itself. The real win is making your own.
 
 ## 🚀 QuickStart
 
@@ -31,68 +31,63 @@ This package ships two ready-to-use profiles to get you started — a general-pu
 # Install
 pi install npm:pi-profile
 
-# Start Pi with a profile
+# Start with a profile
 pi --profile researcher
 
-# Switch profiles on the fly (inside Pi)
+# Switch inside an active session
 /profile researcher
 /profile default
 ```
 
-That's it. The profiles are auto-deployed to `~/.pi/profiles/` on first load. You'll see a confirmation on next Pi startup.
+Profiles deploy to `~/.pi/profiles/` on first load. You'll see a confirmation on the next Pi startup.
 
-## 📋 Profile commands
+## 📋 Commands
 
-Once installed, Pi gains the following slash commands:
-
-| Command | Description |
-|---------|-------------|
+| Command | What it does |
+|---------|--------------|
 | `/profile` | Show current profile + list all available |
-| `/profile <name>` | Switch to a profile (e.g. `/profile researcher`) |
-| `/profile list` | List all available profiles |
-| `/profile show <name>` | Display a profile's full JSON configuration |
-| `/profile create` | Create a new profile (interactive menu) |
-| `/profile create ai` | AI-guided — describe your intent, I'll generate it |
-| `/profile create manual` | Step-by-step wizard covering all options |
+| `/profile <name>` | Switch to a profile |
+| `/profile list` | List all profiles |
+| `/profile show <name>` | Print a profile's full JSON |
+| `/profile create` | Open the creation menu |
+| `/profile create ai` | AI-guided: describe what you want, it gets generated |
+| `/profile create manual` | Step-by-step wizard, every field |
 | `/profile rm <name>` | Delete a profile |
 
-**Examples:**
-
 ```
-/profile                          # see current profile + list
-/profile researcher               # switch to researcher
-/profile list                     # list all profiles
-/profile show researcher          # view full JSON config
-/profile create                   # start the creation wizard
-/profile create ai                # "I want a Rust code review profile"
-/profile create manual            # walk through each field one by one
-/profile rm reviewer              # delete a profile
+/profile                          # current + list
+/profile researcher               # switch
+/profile show researcher          # dump JSON
+/profile create                   # open wizard
+/profile create ai                # "I want a Rust review profile"
+/profile create manual            # walk through fields
+/profile rm reviewer              # delete
 ```
 
-You can also start Pi with a specific profile from the command line:
+Start from the CLI:
 
 ```bash
 pi --profile researcher
 pi --profile default
 ```
 
-And set a persistent default via environment variable:
+Or set a default via env var:
 
 ```bash
 export PI_PROFILE=researcher
-pi                              # starts with researcher automatically
+pi                                # always opens with researcher
 ```
 
-## 📦 Included profiles
+## 📦 What's included
 
-| Profile | Label | Model | Best for |
+| Profile | Label | Model | Use case |
 |---------|-------|-------|----------|
 | `default` | ⚡ Default | `deepseek-v4-flash` | General-purpose coding |
 | `researcher` | 🔬 Deep Researcher | `kimi-k2.6` | Web research & synthesis |
 
 ### ⚡ Default
 
-The everyday coding profile. Quick, capable, and ready for anything — debugging a cryptic error, scaffolding a new module, or refactoring legacy code.
+The everyday coding profile. Quick, capable, ready for anything from a cryptic stack trace to scaffolding a new module.
 
 ```json
 {
@@ -105,25 +100,25 @@ The everyday coding profile. Quick, capable, and ready for anything — debuggin
 
 ### 🔬 Deep Researcher
 
-A rigorous research assistant. Enforces source citation, cross-validation, and structured output — ideal for literature surveys, technical deep-dives, and investigative tasks.
+Strict mode for research. Cites sources, cross-checks, returns structured output. Useful for literature surveys, technical deep-dives, and investigative tasks.
 
-- **System prompt**: strict research guidelines (cite sources, cross-check, structured output)
-- **Skills**: `learn`, `wiki-read`, `wiki-write` auto-loaded for efficient knowledge work
-- **Model**: `kimi-k2.6` with `high` thinking level
-- **Session name**: auto-set to `🔬 Research`
+- System prompt enforces citation, cross-validation, structured output
+- Skills `learn`, `wiki-read`, `wiki-write` auto-loaded
+- Model: `kimi-k2.6` with `high` thinking
+- Sessions auto-named `🔬 Research`
 
-## 🧩 Profile schema
+## 🧩 Schema
 
-Profiles live as plain JSON files at `~/.pi/profiles/<name>.json`. You can inspect, create, or edit them with any text editor.
+Profiles are plain JSON at `~/.pi/profiles/<name>.json`. Edit them with anything.
 
 ```bash
-# List all profiles
 ls ~/.pi/profiles/
-
-# View a profile
 cat ~/.pi/profiles/researcher.json
+```
 
-# Create a new one by hand
+Hand-rolling a new one:
+
+```bash
 cat > ~/.pi/profiles/reviewer.json << 'EOF'
 {
   "name": "reviewer",
@@ -137,37 +132,39 @@ cat > ~/.pi/profiles/reviewer.json << 'EOF'
 EOF
 ```
 
-### Full field reference
+### Field reference
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `name` | `string` | ✅ | Profile identifier (lowercase, no spaces) |
-| `label` | `string` | | Display label (emojis OK) |
-| `description` | `string` | | One-line summary |
-| `systemPrompt` | `string` | | System prompt override (role, tone, behavior) |
-| `model` | `object` | | Fixed model binding |
-| `model.provider` | `string` | | e.g. `anthropic`, `google`, `opencode-go` |
-| `model.model` | `string` | | e.g. `claude-sonnet-4-7`, `deepseek-v4-flash` |
-| `model.thinkingLevel` | `string` | | `off`, `low`, `medium`, `high`, `xhigh` |
-| `tools` | `object` | | Tool access control |
-| `tools.whitelist` | `string[]` | | If set, ONLY these tools are available |
-| `tools.blacklist` | `string[]` | | Tools to explicitly disallow |
-| `skills` | `string[]` | | Skills auto-bound to this profile; non-selected skills become invisible to the model |
-| `permissions` | `object` | | Dangerous command & path protection |
-| `permissions.dangerousCommands` | `string[]` | | Bash patterns to block (e.g. `rm -rf /`) |
-| `permissions.protectedPaths` | `string[]` | | File paths to block in read/write/edit |
-| `subagents` | `object` | | Team members (each with own model, tools, prompt) |
-| `sessionName` | `string` | | Auto-name for sessions using this profile |
+| Field | Type | Required | Notes |
+|-------|------|----------|-------|
+| `name` | `string` | yes | Identifier, lowercase, no spaces |
+| `label` | `string` |  | Display label, emojis OK |
+| `description` | `string` |  | One-line summary |
+| `systemPrompt` | `string` |  | Role / tone / behavior override |
+| `model` | `object` |  | Fixed model binding |
+| `model.provider` | `string` |  | `anthropic`, `google`, `opencode-go`, ... |
+| `model.model` | `string` |  | `claude-sonnet-4-7`, `deepseek-v4-flash`, ... |
+| `model.thinkingLevel` | `string` |  | `off`, `low`, `medium`, `high`, `xhigh` |
+| `tools` | `object` |  | Tool access control |
+| `tools.whitelist` | `string[]` |  | If set, only these tools are available |
+| `tools.blacklist` | `string[]` |  | Tools to disallow |
+| `skills` | `string[]` |  | Skills visible to the model; others are hidden |
+| `permissions` | `object` |  | Bash + path guardrails |
+| `permissions.dangerousCommands` | `string[]` |  | Blocked bash patterns, e.g. `rm -rf /` |
+| `permissions.protectedPaths` | `string[]` |  | Blocked read/write paths |
+| `subagents` | `object` |  | Team members, each with own model/tools |
+| `sessionName` | `string` |  | Auto-name for sessions |
 
-### Team profiles with subagents
+### Subagents
 
-Profiles can define specialized sub-agents — each with its own model, tools, and system prompt — letting you build multi-agent workflows within a single profile. Common patterns:
+A profile can ship its own team. Each subagent has its own model, tools, and system prompt, and gets exposed as a Pi agent you can delegate to.
 
-- **Planner → Executor**: a strong model plans (read-only), then a light model executes
-- **Researcher → Writer**: web-capable research feeds into a focused writing pass
-- **Orchestrator**: the main agent delegates sub-tasks to specialized helpers
+A few common shapes:
 
-Example — a two-person dev team:
+- **Planner → Executor**: a strong model plans read-only, a cheap model writes
+- **Researcher → Writer**: web-capable research feeds a focused writing pass
+- **Orchestrator**: the main agent routes sub-tasks to specialists
+
+A two-person dev team:
 
 ```json
 {
@@ -189,21 +186,21 @@ Example — a two-person dev team:
 }
 ```
 
-Each subagent is exposed as a Pi agent via `~/.pi/agent/agents/<name>.md`, so you can delegate with `Agent({ subagent_type: "planner", prompt: "..." })`.
+Each subagent lands at `~/.pi/agent/agents/<name>.md`, so you can delegate with `Agent({ subagent_type: "planner", prompt: "..." })`.
 
 ## 🔧 How it works
 
-This package ships a small Pi extension (`extensions/index.ts`) that, on `session_start`, copies the bundled profiles into `~/.pi/profiles/`. No manual file moves, no symlinks — just install and go.
+A small extension (`extensions/index.ts`) ships in the package. On `session_start` it copies the bundled profiles into `~/.pi/profiles/`. No symlinks, no manual steps.
 
 ```
 pi install npm:pi-profile
-  → Pi downloads & loads the package
+  → pi loads the package
     → extension fires on session_start
-      → profiles/ directory copied to ~/.pi/profiles/
-        → ready for --profile or /profile
+      → profiles/ copied to ~/.pi/profiles/
+        → --profile and /profile work
 ```
 
-After installation, profiles are managed entirely by Pi's native profile system — no lock-in, no magic. You can inspect, edit, or delete profile JSONs at any time.
+After that, the profiles belong to Pi's native profile system. Edit, delete, add new ones with any text editor.
 
 ## 🛠 Development
 
@@ -211,22 +208,23 @@ After installation, profiles are managed entirely by Pi's native profile system 
 git clone https://github.com/acumen7/pi-profile.git
 cd pi-profile
 
-# Test locally
+# Local test
 pi install ./pi-profile
 
-# Validate package
+# Validate
 npm pack --dry-run
 
-# Publish (requires npm login)
+# Publish
+npm login
 npm publish
 ```
 
 ## 📄 License
 
-MIT — see [LICENSE](./LICENSE).
+MIT. See [LICENSE](./LICENSE).
 
 ---
 
 <p align="center">
-  Made for the <a href="https://pi.dev">Pi ecosystem</a>. Profiles are just JSON — share them, fork them, make them your own.
+  Made for the <a href="https://pi.dev">Pi ecosystem</a>. Profiles are just JSON: share them, fork them, make them your own.
 </p>
