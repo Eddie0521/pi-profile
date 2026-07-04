@@ -2,7 +2,7 @@
   English | <a href="./README_CN.md">简体中文</a> · <a href="https://pi.dev/packages/pi-profile">pi.dev</a>
 </p>
 
-<h1 align="center">pi-profile</h1>
+<h1 align="center">Pi-Profile</h1>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/pi-profile"><img src="https://img.shields.io/npm/v/pi-profile?style=flat-square&label=npm" alt="npm" /></a>
@@ -43,20 +43,10 @@ Profiles deploy to `~/.pi/profiles/` on first load. You'll see a confirmation on
 
 ## 📋 Commands
 
-| Command | What it does |
-|---------|--------------|
-| `/profile` | Show current profile + list all available |
-| `/profile <name>` | Switch to a profile |
-| `/profile list` | List all profiles |
-| `/profile show <name>` | Print a profile's full JSON |
-| `/profile create` | Open the creation menu |
-| `/profile create ai` | AI-guided: describe what you want, it gets generated |
-| `/profile create manual` | Step-by-step wizard, every field |
-| `/profile rm <name>` | Delete a profile |
-
 ```
 /profile                          # current + list
 /profile researcher               # switch
+/profile list                     # list all profiles
 /profile show researcher          # dump JSON
 /profile create                   # open wizard
 /profile create ai                # "I want a Rust review profile"
@@ -84,28 +74,6 @@ pi                                # always opens with researcher
 |---------|-------|-------|----------|
 | `default` | ⚡ Default | `deepseek-v4-flash` | General-purpose coding |
 | `researcher` | 🔬 Deep Researcher | `kimi-k2.6` | Web research & synthesis |
-
-### ⚡ Default
-
-The everyday coding profile. Quick, capable, ready for anything from a cryptic stack trace to scaffolding a new module.
-
-```json
-{
-  "model": {
-    "provider": "opencode-go",
-    "model": "deepseek-v4-flash"
-  }
-}
-```
-
-### 🔬 Deep Researcher
-
-Strict mode for research. Cites sources, cross-checks, returns structured output. Useful for literature surveys, technical deep-dives, and investigative tasks.
-
-- System prompt enforces citation, cross-validation, structured output
-- Skills `learn`, `wiki-read`, `wiki-write` auto-loaded
-- Model: `kimi-k2.6` with `high` thinking
-- Sessions auto-named `🔬 Research`
 
 ## 🧩 Schema
 

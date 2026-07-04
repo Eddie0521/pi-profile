@@ -2,7 +2,7 @@
   <a href="./README.md">English</a> | 简体中文 · <a href="https://pi.dev/packages/pi-profile">pi.dev</a>
 </p>
 
-<h1 align="center">pi-profile</h1>
+<h1 align="center">Pi-Profile</h1>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/pi-profile"><img src="https://img.shields.io/npm/v/pi-profile?style=flat-square&label=npm" alt="npm" /></a>
@@ -43,20 +43,10 @@ pi --profile researcher
 
 ## 📋 命令
 
-| 命令 | 说明 |
-|------|------|
-| `/profile` | 查看当前配置 + 列出所有可用配置 |
-| `/profile <name>` | 切换到指定配置 |
-| `/profile list` | 列出所有配置 |
-| `/profile show <name>` | 打印配置的完整 JSON |
-| `/profile create` | 打开创建菜单 |
-| `/profile create ai` | AI 引导：描述需求，自动生成 |
-| `/profile create manual` | 分步向导，逐字段 |
-| `/profile rm <name>` | 删除配置 |
-
 ```
 /profile                          # 当前 + 列表
 /profile researcher               # 切换
+/profile list                     # 列出所有配置
 /profile show researcher          # 打印 JSON
 /profile create                   # 打开向导
 /profile create ai                # "我要一个 Rust 审查配置"
@@ -84,28 +74,6 @@ pi                                # 总是以 researcher 启动
 |------|------|------|------|
 | `default` | ⚡ 默认 | `deepseek-v4-flash` | 通用编程 |
 | `researcher` | 🔬 深度研究者 | `kimi-k2.6` | Web 研究与综合 |
-
-### ⚡ 默认
-
-日常编程配置。快、能打，从诡异堆栈到新模块脚手架都能上手。
-
-```json
-{
-  "model": {
-    "provider": "opencode-go",
-    "model": "deepseek-v4-flash"
-  }
-}
-```
-
-### 🔬 深度研究者
-
-研究用的严格模式。强制引用来源、交叉验证、输出结构化结果。适合文献调研、技术深度分析、调查类任务。
-
-- 系统提示词要求引用来源、交叉校验、结构化输出
-- 自动加载 `learn`、`wiki-read`、`wiki-write`
-- 模型 `kimi-k2.6`，`high` 思考等级
-- 会话自动命名 `🔬 Research`
 
 ## 🧩 字段说明
 
