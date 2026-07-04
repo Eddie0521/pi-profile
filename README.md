@@ -27,6 +27,13 @@ A Pi session shouldn't try to be both at once. Profiles bundle the system prompt
 
 This package ships two profiles to start with (a general-purpose coding assistant and a research mode) so the install has something to show for itself. The real win is making your own.
 
+## ✨ Highlights
+
+- **One agent, many profiles.** No more bouncing between Claude Code, Codex, and Pi trying to find the right mindset for the task. Pi profiles live in the same CLI; you switch the persona, the tool stays.
+- **Skill and tool isolation.** The reviewer profile doesn't see `web_search`. The writer profile doesn't see `bash`. A profile that doesn't need a tool simply doesn't have it, so the LLM doesn't waste tokens or attention on capabilities it shouldn't be reaching for.
+- **Preset prompt and model, one keystroke away.** System prompt, model binding, thinking level, session name: all set once in JSON, applied the moment you switch.
+- **Subagents ship with the profile.** A profile isn't just a persona, it's a team. Each role on the team gets its own model, tools, and prompt, and the profile brings them along.
+
 ## 🚀 QuickStart
 
 ```bash
@@ -69,6 +76,15 @@ Or set a default via env var:
 export PI_PROFILE=researcher
 pi                                # always opens with researcher
 ```
+
+## 🤔 Why Pi?
+
+Pi is a clean fit for profiles, and that's mostly because of how the rest of the system is built.
+
+- **Every layer is configurable.** System prompt, model, skills, tools, slash commands, UI, themes, agent loop, all wired up so a profile can change any of them without reaching for a fork.
+- **Provider and model are first-class switches.** Run a profile on Anthropic, run the next one on a local model, run a third on whatever the team is benchmarking this week. No lock-in to one vendor.
+- **One extension shape covers tools, skills, and subagents.** Register a custom tool, a slash command, a status widget, a sub-agent: same `ExtensionAPI`, same `extensions/` directory. A profile team of planner+executor+reviewer is a few hundred lines of TypeScript, not a new project.
+- **No kitchen sink.** Claude Code and Codex ship with a long list of features nobody asked for, attached to a single agent that has to be all of them at once. Pi starts close to empty and lets profiles add exactly what's needed, which is the whole point.
 
 ## 📦 What's included
 

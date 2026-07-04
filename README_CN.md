@@ -27,6 +27,13 @@
 
 本包内置两个配置先跑起来（一个通用编程助手，一个研究模式），让安装完就能看见东西。但真正值得做的是写自己的。
 
+## ✨ 亮点
+
+- **一个 Agent，多种 Profile。** 不用再在 Claude Code、Codex、Pi 之间来回跳着找那个“今天该用哪个”的状态。Pi 配置文件就在同一个 CLI 里，换角色不换工具。
+- **Skill/Tools 隔离。** 审查配置看不到 `web_search`，写作配置看不到 `bash`。一个配置不需要某个工具，它就不存在。LLM 不会把上下文和注意力浪费在不该伸手的能力上。
+- **预设提示词和模型，一键启用。** 系统提示词、模型绑定、思考等级、会话名：在 JSON 里定义一次，切换时一气启用。
+- **Subagent 随 Profile 走。** Profile 不只是“一个人”，是一支团队。每个角色有独立的模型、工具和提示词，配置切换时一起带上。
+
 ## 🚀 快速开始
 
 ```bash
@@ -69,6 +76,15 @@ pi --profile default
 export PI_PROFILE=researcher
 pi                                # 总是以 researcher 启动
 ```
+
+## 🤔 为什么是 Pi？
+
+Pi 跟 profile 是个干净的搭配，这主要因为它底层就是这么搭的。
+
+- **每个环节都可以配置。** 系统提示词、模型、技能、工具、斜杠命令、UI、主题、agent 循环，都能被 profile 改动，不需要去 fork 项目。
+- **Provider/Model 是一等公民。** 一个配置跑在 Anthropic，下一个跑在本地模型，再下一个跑在团队这周在评估的某家厂商。不被任何一家束缚。
+- **一个 Extension 形状复盖 Tool/Skill/Subagent。** 注册自定义工具、斜杠命令、状态组件、子代理：同一个 `ExtensionAPI`，同一个 `extensions/` 目录。planner+executor+reviewer 这支团队，几百行 TypeScript 就拼完，不用开新项目。
+- **不做大杂烩。** Claude Code、Codex 都带了一堆没人要的功能，挂在一个“什么都是”的 agent 上。Pi 起点接近空白，让 profile 按需添加。这才是 profile 存在的意义。
 
 ## 📦 内置配置
 
