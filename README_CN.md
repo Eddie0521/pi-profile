@@ -7,7 +7,7 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/pi-profile"><img src="https://img.shields.io/npm/v/pi-profile?style=flat-square&label=npm" alt="npm" /></a>
   <a href="https://pi.dev/packages/pi-profile"><img src="https://img.shields.io/badge/pi.dev-package-6366f1?style=flat-square" alt="pi.dev package" /></a>
-  <a href="https://github.com/acumen7/pi-profile"><img src="https://img.shields.io/github/last-commit/acumen7/pi-profile?style=flat-square" alt="GitHub last commit" /></a>
+  <a href="https://github.com/Eddie0521/pi-profile"><img src="https://img.shields.io/github/last-commit/Eddie0521/pi-profile?style=flat-square" alt="GitHub last commit" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-10b981?style=flat-square" alt="MIT License" /></a>
 </p>
 
@@ -175,7 +175,7 @@ pi install npm:pi-profile
 ## 🛠 开发
 
 ```bash
-git clone https://github.com/acumen7/pi-profile.git
+git clone https://github.com/Eddie0521/pi-profile.git
 cd pi-profile
 
 # 本地测试

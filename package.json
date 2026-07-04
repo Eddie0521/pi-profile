@@ -9,15 +9,15 @@
     "coding-agent",
     "profile"
   ],
-  "homepage": "https://github.com/acumen7/pi-profile#readme",
+  "homepage": "https://github.com/Eddie0521/pi-profile#readme",
   "bugs": {
-    "url": "https://github.com/acumen7/pi-profile/issues"
+    "url": "https://github.com/Eddie0521/pi-profile/issues"
   },
   "license": "MIT",
   "author": "acumen7",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/acumen7/pi-profile.git"
+    "url": "git+https://github.com/Eddie0521/pi-profile.git"
   },
   "pi": {
     "extensions": [
