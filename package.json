@@ -1,38 +1,36 @@
 {
   "name": "pi-profile",
-  "version": "0.1.1",
-  "description": "Pi profiles — default coding assistant + deep researcher mode. Switch with `--profile`.",
+  "version": "0.2.0",
+  "description": "Runtime profile switching for the Pi coding agent — swap model, skills, subagents, and system prompt in the same session, no restart needed.",
   "keywords": [
     "pi-package",
-    "pi-profiles",
-    "pi",
-    "coding-agent",
-    "profile"
+    "pi-extension",
+    "pi-profile",
+    "profiles",
+    "persona",
+    "identity"
   ],
-  "homepage": "https://github.com/Eddie0521/pi-profile#readme",
-  "bugs": {
-    "url": "https://github.com/Eddie0521/pi-profile/issues"
-  },
   "license": "MIT",
-  "author": "acumen7",
+  "type": "module",
+  "main": "index.ts",
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Eddie0521/pi-profile.git"
   },
-  "pi": {
-    "extensions": [
-      "./extensions/index.ts"
-    ],
-    "image": "https://pi.dev/packages/pi-profile/screenshot.png"
-  },
-  "files": [
-    "extensions/",
-    "profiles/",
-    "README.md",
-    "README_CN.md",
-    "LICENSE"
-  ],
-  "engines": {
-    "node": ">=18"
+  "homepage": "https://github.com/Eddie0521/pi-profile#readme",
+  "bugs": {
+    "url": "https://github.com/Eddie0521/pi-profile/issues"
   }
 }
